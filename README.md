@@ -36,7 +36,7 @@
     }
 
 
-Adapter：
+
 
     public class TestAdapter extends BaseQuickAdapter<TestJavaBean.Data,BaseViewHolder> {
 
@@ -48,4 +48,4 @@ Adapter：
     protected void convert(BaseViewHolder helper, TestJavaBean.Data item) {
         helper.setText(R.id.tvTitle, item.getTitle());
     }
-}
+    }
