@@ -36,4 +36,16 @@
     }
 
 
+Adapter：
 
+    public class TestAdapter extends BaseQuickAdapter<TestJavaBean.Data,BaseViewHolder> {
+
+    public TestAdapter() {
+        super(R.layout.item_test);
+    }
+
+    @Override
+    protected void convert(BaseViewHolder helper, TestJavaBean.Data item) {
+        helper.setText(R.id.tvTitle, item.getTitle());
+    }
+}
