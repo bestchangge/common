@@ -1,6 +1,5 @@
 package com.sun.baselibrary.base;
 
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.sun.baselibrary.lifecycle.BaseViewModel;
+import com.sun.baselibrary.viewmodel.BaseViewModel;
 import com.sun.baselibrary.util.ClassUtil;
 import com.sun.baselibrary.util.SoftInputUtil;
 import com.sun.baselibrary.view.LoadingDialog;

@@ -1,10 +1,7 @@
 package com.sun.baselibrary.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
-
-import com.sun.baselibrary.lifecycle.BaseViewModel;
 
 /**
  * @author Sun

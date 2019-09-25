@@ -1,4 +1,4 @@
-package com.sun.baselibrary.lifecycle;
+package com.sun.baselibrary.viewmodel;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
