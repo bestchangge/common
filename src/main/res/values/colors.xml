@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#008577</color>
+    <color name="colorPrimary">#5590F6</color>
+    <color name="colorPrimaryDark">#5590F6</color>
+    <color name="colorAccent">#5590F6</color>
+    <color name="colorPrimaryDeep">#3673E1</color>
+    <color name="colorPrimaryLight">#FF71A4FD</color>
 
     <!--页面背景的颜色-->
     <color name="colorPageBg">#f2f4f5</color>

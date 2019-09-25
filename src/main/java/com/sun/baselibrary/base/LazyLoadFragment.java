@@ -2,12 +2,15 @@ package com.sun.baselibrary.base;
 
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +52,6 @@ public abstract class LazyLoadFragment<VM extends AndroidViewModel, D extends Vi
 
     protected  void initData(){
     }
-
-
-
 
     /**
      * 初始化ViewModel
@@ -105,6 +105,12 @@ public abstract class LazyLoadFragment<VM extends AndroidViewModel, D extends Vi
      */
     protected abstract void lazyLoad();
 
+    /**
+     * 页面跳转
+     */
+    protected void readyGo(Class clazz){
+        startActivity(new Intent(getActivity(),clazz));
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {

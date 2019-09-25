@@ -63,9 +63,9 @@ public class HttpUtils {
     }
 
 
-    public Retrofit.Builder getBuilder(String apiUrl) {
+    public Retrofit.Builder initRetrofit(String apiUrl) {
         Retrofit.Builder builder = new Retrofit.Builder();
-        builder.client(getOkHttpClient());
+        builder.client(getDefaultClient());
         builder.baseUrl(apiUrl);//设置远程地址
         builder.addConverterFactory(new NullOnEmptyConverterFactory());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -108,9 +108,21 @@ public class HttpUtils {
 
     }
 
-    private OkHttpClient getOkHttpClient() {
-        OkHttpClient client = new OkHttpClient();
-        return client;
+    /**
+     * 默认OkHttpClient设置
+     */
+    private OkHttpClient getDefaultClient() {
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+
+        if (BuildConfig.DEBUG) {
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else {
+            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        }
+        okHttpClient.addInterceptor(logging);
+        return okHttpClient.build();
     }
 
     public void setTokenListener(ImplTokenGetListener listener) {

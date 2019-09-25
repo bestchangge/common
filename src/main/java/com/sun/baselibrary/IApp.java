@@ -18,7 +18,6 @@ public class IApp extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-
         initHttp();
     }
     private void initHttp(){

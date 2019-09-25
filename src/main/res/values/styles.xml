@@ -8,4 +8,47 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--对话框的样式-->
+    <style name="LoadingDialog">
+        <!--对话框背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!--没有标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否浮现在Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!--背景透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 是否有覆盖 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!--背景变暗-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="btnStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/shape_button</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!--水平分隔线-->
+    <style name="horizontalLine">
+        <item name="android:background">@color/colorLineItem</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
 </resources>

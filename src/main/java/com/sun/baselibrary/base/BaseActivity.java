@@ -13,8 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.sun.baselibrary.lifecycle.BaseViewModel;
 import com.sun.baselibrary.util.ClassUtil;
 import com.sun.baselibrary.util.SoftInputUtil;
+import com.sun.baselibrary.view.LoadingDialog;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -24,11 +26,13 @@ import io.reactivex.disposables.Disposable;
  * @created: 2019/5/9
  * @description: 基类
  */
-public abstract class BaseActivity<VM extends AndroidViewModel, D extends ViewDataBinding> extends AppCompatActivity {
+public abstract class BaseActivity<VM extends BaseViewModel, D extends ViewDataBinding> extends AppCompatActivity {
 
     protected D binding;
     // ViewModel
     protected VM mViewModel;
+
+    private LoadingDialog loadingDialog;
 
     private CompositeDisposable mCompositeDisposable;
 
@@ -38,6 +42,7 @@ public abstract class BaseActivity<VM extends AndroidViewModel, D extends ViewDa
         binding = DataBindingUtil.setContentView(this, getLayoutId());
         getIntentData(getIntent());
         initViewModel();
+        initObserve();
         showNavBack();
         initData();
     }
@@ -69,6 +74,13 @@ public abstract class BaseActivity<VM extends AndroidViewModel, D extends ViewDa
         }
     }
 
+    /**
+     * 页面跳转
+     */
+    protected void readyGo(Class clazz){
+        startActivity(new Intent(this,clazz));
+    }
+
     protected abstract int getLayoutId();
 
     protected abstract void initData();
@@ -83,6 +95,44 @@ public abstract class BaseActivity<VM extends AndroidViewModel, D extends ViewDa
         Class<VM> viewModelClass = ClassUtil.getViewModel(this);
         if (viewModelClass != null) {
             this.mViewModel = ViewModelProviders.of(this).get(viewModelClass);
+        }
+    }
+
+    /**
+     * 监听当前ViewModel中 showProgress
+     */
+    private void initObserve() {
+        if (mViewModel == null) return;
+        mViewModel.showProgress(this, bean -> {
+            if (bean.isShow()) {
+                showProgress(bean.getMsg());
+            } else {
+                dismissProgress();
+            }
+        });
+    }
+
+    /**
+     * 显示用户等待框
+     * @param msg 提示信息
+     */
+    protected void showProgress(String msg) {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.setLoadingMsg(msg);
+        } else {
+            loadingDialog = new LoadingDialog(this);
+            loadingDialog.setLoadingMsg(msg);
+            loadingDialog.show();
+        }
+    }
+
+    /**
+     * 隐藏等待框
+     */
+    protected void dismissProgress() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+            loadingDialog = null;
         }
     }
 
