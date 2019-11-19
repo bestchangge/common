@@ -15,7 +15,7 @@ public class DialogLiveData<T> extends MutableLiveData<T> {
 
     public void setValue(boolean isShow) {
         dialogBean.setShow(isShow);
-        dialogBean.setMsg("");
+        dialogBean.setMsg(isShow?"数据加载中...":"");
         setValue((T) dialogBean);
     }
     public void  setValue(boolean isShow, String msg) {
